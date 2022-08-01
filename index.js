@@ -11,6 +11,7 @@ fundButton.onclick = fund
 balanceButton.onclick = getBalance
 withdrawButton.onclick = withdraw
 
+// Connect Metamask Wallet
 async function connect() {
     if (typeof window.ethereum !== "undefined") {
         try {
@@ -28,6 +29,7 @@ async function connect() {
     }
 }
 
+// Fund Contract
 async function fund() {
     const ethAmount = document.getElementById("ethAmount").value
     console.log(`Funding with ${ethAmount}...`)
@@ -48,6 +50,7 @@ async function fund() {
     }
 }
 
+// Get Contract Balance
 async function getBalance() {
     if (typeof window.ethereum !== "undefined") {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -56,6 +59,9 @@ async function getBalance() {
     }
 }
 
+
+// Withdraw Contract Balance
+// Only Owner can call this function
 async function withdraw() {
     if (typeof window.ethereum !== "undefined") {
         console.log("Withdrawing")
@@ -70,6 +76,7 @@ async function withdraw() {
         }
     }
 }
+
 
 function listenForTransactionMine(transactionResponse, provider) {
     console.log(`Mining ${transactionResponse.hash}`)
